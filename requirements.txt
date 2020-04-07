@@ -1,3 +1,4 @@
-pytelegrambotapi
-requests
-beautifulsoup4
+beautifulsoup4==4.9.0
+pyTelegramBotAPI==3.6.7
+PyYAML==5.1.2
+requests==2.22.0
