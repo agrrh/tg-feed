@@ -16,6 +16,7 @@ Useful to watch for low-frequent updates:
   - Proper token
   - Channel/group ID
   - Resources specs
+
   Save resulting file it as `config.yml`
 
 - Run container with your config and persistent data folder:
