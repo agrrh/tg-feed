@@ -16,10 +16,9 @@ Useful to watch for low-frequent updates:
   - Proper token
   - Channel/group ID
   - Resources specs
+  Save resulting file it as `config.yml`
 
-- Save it as `config.yml`
-
-- Run container:
+- Run container with your config and persistent data folder:
   ```
   docker run \
     --rm -d --name tg-feed \
