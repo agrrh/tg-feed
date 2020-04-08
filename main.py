@@ -28,7 +28,7 @@ if __name__ == '__main__':
                 telegram.send_message(
                     config.get('telegram').get('chat_id'),
                     f"{url}",
-                    parse_mode='Markdown'
+                    # parse_mode='Markdown'  # TODO uncomment when fixed content break on split
                 )
 
                 resource.last_update(url)
