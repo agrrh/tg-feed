@@ -9,7 +9,7 @@ COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
 COPY ./ ./
-COPY ./entrypoint.sh /entrypoint.sh
+RUN mv /app/entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/bin/bash"]
 CMD ["/entrypoint.sh"]
