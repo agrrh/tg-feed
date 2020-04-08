@@ -29,7 +29,7 @@ class Entity(object):
 
         if self.patterns.get('content'):
             content_list = [
-                html_content.text.strip()[:135]
+                html_content.text.strip()
                 for html_content
                 in html.select(self.patterns.get('content'))
             ]

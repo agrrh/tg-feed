@@ -25,15 +25,9 @@ if __name__ == '__main__':
                 if url == resource.last:
                     break
 
-                message = (
-                    f"{url}\n\n{content}"
-                    if content
-                    else f"{url}"
-                )
-
                 telegram.send_message(
                     config.get('telegram').get('chat_id'),
-                    message,
+                    f"{url}",
                     parse_mode='Markdown'
                 )
 
