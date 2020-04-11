@@ -19,7 +19,7 @@ class ResourceManager(object):
         return self.resource.parse(content)
 
     def select_news(self, resource_pieces):
-        if not self.checkpoint and resource_pieces:
+        if resource_pieces and not self.checkpoint:
             yield resource_pieces[0]
 
         for piece in resource_pieces:
@@ -29,13 +29,14 @@ class ResourceManager(object):
             yield piece
 
     def notify(self, telegram, news_list):
-        checkpoint_done = False
+        checkpoint_saved = False
 
         for piece in news_list:
-            if not checkpoint_done:
-                checkpoint_done = self.storage.put(
+            if not checkpoint_saved:
+                self.storage.put(
                     self.resource.uuid,
                     piece.hash
                 )
+                checkpoint_saved = True
 
             telegram.send(piece.pretty)
