@@ -12,7 +12,7 @@ telegram:
 resources:
   # bash.im
   - url: https://bash.im/
-    target: 'main > section > article.quote > div.quote_frame > header.quote__header > a.quote__header_permalink'
+    target: 'article.quote > div.quote__frame > header.quote__header > a.quote__header_permalink'
 
   # Stopgame Blogs
   - url: https://stopgame.ru/blogs
