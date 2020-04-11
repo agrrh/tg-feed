@@ -1,3 +1,4 @@
+import logging
 import schedule
 import sys
 import time
@@ -27,8 +28,7 @@ if __name__ == '__main__':
     ]
 
     def payload():
-        # TODO proper logging
-        print('Payload started')
+        logging.warning('Payload started')
 
         # TODO threading
         for resource_manager in managers_list:
@@ -36,11 +36,11 @@ if __name__ == '__main__':
             news = resource_manager.select_news(resource_pieces)
             resource_manager.notify(telegram, news)
 
-        print('Payload finished')
+        logging.warning('Payload finished')
 
     # TODO use argparse or fire
     if '--daemon' in sys.argv:
-        print('Run in daemon mode')
+        logging.warning('Starting in daemon mode')
 
         # First run is immediate
         payload()
@@ -53,6 +53,6 @@ if __name__ == '__main__':
             schedule.run_pending()
             time.sleep(1)
     else:
-        print('Run in one-time mode')
+        logging.warning('Run in one-time mode')
 
         payload()

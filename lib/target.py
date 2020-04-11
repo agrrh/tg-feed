@@ -1,3 +1,5 @@
+import logging
+
 from itertools import zip_longest
 
 from lib.piece import Piece
@@ -31,4 +33,6 @@ class Target(object):
             ]
 
         for url, text in zip_longest(url_list, text_list):
+            logging.debug(f'Found piece: {url}')
+
             yield Piece(url, text)
