@@ -39,4 +39,9 @@ class ResourceManager(object):
                 )
                 checkpoint_saved = True
 
-            telegram.send(piece.pretty)
+            # If text is separated due to being too long
+            if isinstance(piece.pretty, list):
+                for pretty_part in piece.pretty:
+                    telegram.send(pretty_part)
+            else:
+                telegram.send(piece.pretty)

@@ -1,7 +1,11 @@
 import hashlib
 
+from telebot import util
+
 
 class Piece(object):
+    TEXT_LIMIT = 3000
+
     def __init__(self, url, text):
         self.url = url
         self.text = text
@@ -14,8 +18,10 @@ class Piece(object):
     def pretty(self):
         pretty = f'{self.url}'
 
-        # TODO limit too long texts
         if self.text:
             pretty = f'{self.url}\n\n{self.text}'
+
+            if len(pretty) > self.TEXT_LIMIT:
+                pretty = util.split_string(pretty, self.TEXT_LIMIT)
 
         return pretty
