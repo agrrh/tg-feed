@@ -19,9 +19,14 @@ class Piece(object):
         pretty = f'{self.url}'
 
         if self.text:
-            pretty = f'{self.url}\n\n{self.text}'
-
-            if len(pretty) > self.TEXT_LIMIT:
-                pretty = util.split_string(pretty, self.TEXT_LIMIT)
+            if len(self.text) > self.TEXT_LIMIT:
+                pretty = util.split_string(self.text, self.TEXT_LIMIT)
+                pretty = [
+                    f'{n + 1}/{len(pretty)} : {self.url}\n\n{portion}'
+                    for n, portion
+                    in enumerate(pretty)
+                ]
+            else:
+                pretty = f'{self.url}\n\n{self.text}'
 
         return pretty
