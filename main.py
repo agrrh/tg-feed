@@ -1,35 +1,30 @@
-import yaml
-import telebot
-
-from lib.resource import Resource
+from lib.config import Config
+from lib.storage import Storage
+from lib.resource_manager import ResourceManager
+from lib.telegram_bot import TelegramBot
 
 
 if __name__ == '__main__':
-    with open('./config.yml') as fp:
-        config = yaml.load(fp, Loader=yaml.SafeLoader)
+    config = Config('./config.yml')
 
-    telegram = telebot.TeleBot(
-        config.get('telegram').get('token')
+    storage = Storage(config.storage)
+    telegram = TelegramBot(
+        config.telegram.get('token'),
+        config.telegram.get('target_id'),
     )
 
+    managers_list = [
+        ResourceManager(
+            storage=storage,
+            resource_config=resource_config
+        )
+        for resource_config
+        in config.resources
+    ]
+
+    # TODO internal cron
     # TODO threading
-    for resource_config in config.get('resources'):
-        resource = Resource(**resource_config)
-        resource.parse()
-
-        # FIXME notifies only for latest entry
-        for entity in resource.entities_list:
-            for entity_data in entity:
-                url, content = entity_data
-
-                if url == resource.last:
-                    break
-
-                telegram.send_message(
-                    config.get('telegram').get('chat_id'),
-                    f"{url}",
-                    # parse_mode='Markdown'  # TODO uncomment when fixed content break on split
-                )
-
-                resource.last_update(url)
-                break
+    for resource_manager in managers_list:
+        resource_pieces = resource_manager.check_resource()
+        news = resource_manager.select_news(resource_pieces)
+        resource_manager.notify(telegram, news)

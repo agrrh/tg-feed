@@ -1,2 +1,6 @@
+Makefile
+
 config.yml
-data/*.dat
+
+storage/*
+!storage/.gitstore

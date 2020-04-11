@@ -1,20 +1,19 @@
 ---
 
+storage: ./storage
+
 telegram:
   # Get one at @BotFather
   token: ''
   # Send message in your channel/group, then query
   #   https://api.telegram.org/bot{BOT_TOKEN}/getUpdates
-  chat_id: ''
+  target_id: ''
 
 resources:
-  # Local testing
-  #   python3 -m http.server 8000
-  # - url: http://0.0.0.0:8000/
-  #   entities:
-  #     - 'ul > li > a'
+  # bash.im
+  - url: https://bash.im/
+    target: 'main > section > article.quote > div.quote_frame > header.quote__header > a.quote__header_permalink'
 
   # Stopgame Blogs
   - url: https://stopgame.ru/blogs
-    entities:
-      - 'div.lent-left > div.blog-block > table.by-sides.blog-block-top > tbody > tr > td.title > a'
+    target: 'div.lent-left > div.blog-block > table.by-sides.blog-block-top > tbody > tr > td.title > a'

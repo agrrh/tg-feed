@@ -2,3 +2,5 @@ beautifulsoup4==4.9.0
 pyTelegramBotAPI==3.6.7
 PyYAML==5.1.2
 requests==2.22.0
+blitzdb==0.4.4
+python-rocksdb==0.7.0

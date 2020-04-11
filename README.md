@@ -23,7 +23,6 @@ Useful to watch for low-frequent updates:
   ```
   docker run \
     --rm -d --name tg-feed \
-    -v ./data:/app/data \
     -v ./config.yml:/app/config.yml \
     agrrh/tg-feed
   ```
@@ -31,6 +30,61 @@ Useful to watch for low-frequent updates:
 ### Environment
 
 - `TGFEED_INTERVAL` - `300` - interval to check for updates, in seconds.
+
+## Class Diagram
+
+```mermaid
+classDiagram
+
+class ResourceManager {
+  Storage storage
+  Resource resource
+  Piece checkpoint
+
+  check_resource()
+  select_news()
+  notify()
+}
+
+class Resource {
+  string uuid
+  string url
+  Target target
+
+  get()
+  parse()
+}
+
+class Target {
+  string url_selector
+  string text_selector
+
+  find()
+}
+
+class Piece {
+  string url
+  string text
+  string hash
+  string pretty
+}
+
+class Storage {
+  string path
+
+  put()
+  get()
+}
+
+class TelegramBot {
+  string target_id
+
+  send()
+}
+
+Resource *-- Target
+Target *-- Piece
+```
 
 ## Credits
 
