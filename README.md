@@ -27,10 +27,6 @@ Useful to watch for low-frequent updates:
     agrrh/tg-feed
   ```
 
-### Environment
-
-- `TGFEED_INTERVAL` - `300` - interval to check for updates, in seconds.
-
 ## Class Diagram
 
 ```mermaid
