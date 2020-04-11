@@ -29,6 +29,11 @@ Useful to watch for low-frequent updates:
 
 ## Class Diagram
 
+This code requires [Mermaid JS](https://mermaidjs.github.io/) to be displayed. At the moment, GitHub doesn't support it, so feel free to:
+
+- **Display** the code at [live preview tool](https://mermaid-js.github.io/mermaid-live-editor/)
+- **Vote** for [Mermaid support for GitHub](https://github.community/t5/How-to-use-Git-and-GitHub/Feature-Request-Support-Mermaid-markdown-graph-diagrams-in-md/td-p/21967)
+
 ```mermaid
 classDiagram
 
